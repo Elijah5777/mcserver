@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrossCraft Commands</title>
+<link rel="icon" type="image/x-icon" href="assets/Logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+body{background:#121212;color:#fff}
+.command-page{padding:40px 20px;display:flex;flex-direction:column;align-items:center}
+.command-page h1{font-size:3rem;color:#00ffff;margin-bottom:40px}
+.command-card{background:#1e1e1e;padding:20px 25px;border-radius:15px;width:90%;max-width:600px;margin-bottom:20px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.command-card h2{color:#00ffff;margin:0;font-size:1.5rem}
+.sub-commands{max-height:0;opacity:0;overflow:hidden;transition:max-height .3s ease, opacity .3s ease;margin-top:10px}
+.sub-commands p{color:#ddd;font-size:1rem;line-height:1.4;margin-bottom:8px}
+.command-card:hover .sub-commands{max-height:1000px;opacity:1}
+.command-card:hover{transform:scale(1.03)}
+footer{padding:20px;text-align:center;background:#121212;color:#888;font-size:.9rem}
+@media(max-width:768px){.command-page h1{font-size:2.2rem}}
+</style>
+</head>
+<body>
+<section class="command-page">
+<h1>CrossCraft Commands</h1>
+
+<div class="command-card">
+<h2>/flan</h2>
+<div class="sub-commands">
+<p>To claim land, equip your Golden Hoe and select two diagonal corners of your plot.</p>
+<p>/flan info — Get information about a claimed plot.</p>
+<p>/flan delete — Remove the claim that you are in. (Only works in YOUR plot)</p>
+<p>To allow a player to access your plot, <a href="flan1.html">click here for detailed instructions</a>.</p>
+ </p>
+</div>
+</div>
+
+<div class="command-card">
+<h2>/warp</h2>
+<div class="sub-commands">
+<p>/warp [name] — Warp to a predefined location.</p>
+<p>/warp list — List all available warp points.</p>
+<p>/warp create [name] — Create a new warp point (admin only).</p>
+</div>
+</div>
+
+<div class="command-card">
+<h2>/home</h2>
+<div class="sub-commands">
+<p>/sethome — Set your personal home location.</p>
+<p>/home — Teleport back to your home.</p>
+<p>/delhome — Delete your home location.</p>
+</div>
+</div>
+
+</section>
+<footer>
+&copy; 2026 CrossCraft. All rights reserved.
+</footer>
+</body>
+</html>
