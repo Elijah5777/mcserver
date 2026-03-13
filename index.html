@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrossCraft &#8212; Commands</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="site-title">Cross<span>Craft</span></div>
+  <div class="tagline">// SERVER COMMANDS //</div>
+</header>
+
+<main>
+
+  <div class="cmd-section" data-accent="claim">
+    <div class="section-header">
+      <span class="section-icon">L</span>
+      <span class="section-label">LAND CLAIMING</span>
+      <span class="section-count">1 command</span>
+    </div>
+
+    <div class="cmd-card" id="card-flan">
+      <div class="cmd-card-header" onclick="toggle('card-flan')">
+        <span class="cmd-name">/flan</span>
+        <span class="expand-arrow">&#9660;</span>
+      </div>
+      <div class="cmd-card-body">
+        <div class="cmd-card-body-inner">
+          <div class="tip-box">
+            <span class="tip-label">TIP</span>
+            <span class="tip-text">To claim land, equip your Golden Hoe and select two diagonal corners of your plot.</span>
+          </div>
+          <div class="sub-row">
+            <div class="sub-text">
+              <span class="sub-cmd">/flan info</span>
+              <span class="sub-desc">Get information about a claimed plot.</span>
+            </div>
+          </div>
+          <div class="sub-row">
+            <div class="sub-text">
+              <span class="sub-cmd">/flan delete</span>
+              <span class="sub-desc">Remove the claim you're standing in. Only works inside your own plot.</span>
+            </div>
+          </div>
+          <div class="sub-row">
+            <div class="sub-text">
+              <span class="sub-cmd">/flan menu</span>
+              <span class="sub-desc">Manage plot permissions and trusted players. <a href="docs/flan/flan_adding_users_to_plot/flan_adding_users_to_plot.html">View the full guide &#8594;</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cmd-section" data-accent="teleport">
+    <div class="section-header">
+      <span class="section-icon">T</span>
+      <span class="section-label">TELEPORTATION</span>
+      <span class="section-count">2 commands</span>
+    </div>
+
+    <div class="cmd-card" id="card-warp">
+      <div class="cmd-card-header" onclick="toggle('card-warp')">
+        <span class="cmd-name">/warp</span>
+        <span class="expand-arrow">&#9660;</span>
+      </div>
+      <div class="cmd-card-body">
+        <div class="cmd-card-body-inner">
+          <div class="sub-row">
+            <div class="sub-text">
+              <span class="sub-cmd">/warp [name]</span>
+              <span class="sub-desc">Teleport to a predefined location.</span>
+            </div>
+          </div>
+          <div class="sub-row">
+            <div class="sub-text">
+              <span class="sub-cmd">/warp list</span>
+              <span class="sub-desc">List all available warp points.</span>
+            </div>
+          </div>
+          <div class="sub-row">
+            <div class="sub-text">
+              <span class="sub-cmd">/warp create [name]</span>
+              <span class="sub-desc">Create a new warp point. Admin only.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card" id="card-home">
+      <div class="cmd-card-header" onclick="toggle('card-home')">
+        <span class="cmd-name">/home</span>
+        <span class="expand-arrow">&#9660;</span>
+      </div>
+      <div class="cmd-card-body">
+        <div class="cmd-card-body-inner">
+          <div class="sub-row">
+            <div class="sub-text">
+              <span class="sub-cmd">/sethome</span>
+              <span class="sub-desc">Set your personal home location.</span>
+            </div>
+          </div>
+          <div class="sub-row">
+            <div class="sub-text">
+              <span class="sub-cmd">/home</span>
+              <span class="sub-desc">Teleport back to your home.</span>
+            </div>
+          </div>
+          <div class="sub-row">
+            <div class="sub-text">
+              <span class="sub-cmd">/delhome</span>
+              <span class="sub-desc">Delete your home location.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cmd-section" data-accent="general">
+    <div class="section-header">
+      <span class="section-icon">G</span>
+      <span class="section-label">GENERAL</span>
+      <span class="section-count">0 commands</span>
+    </div>
+  </div>
+
+</main>
+
+<footer>&copy; 2026 CROSSCRAFT &#8212; ALL RIGHTS RESERVED</footer>
+
+<div id="block-bar"></div>
+
+<script src="assets/blockbar.js" data-root=""></script>
+<script>
+  function toggle(id) {
+    var card = document.getElementById(id);
+    var wasOpen = card.classList.contains('open');
+    document.querySelectorAll('.cmd-card').forEach(function(c) { c.classList.remove('open'); });
+    if (!wasOpen) card.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
