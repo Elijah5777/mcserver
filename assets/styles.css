@@ -358,6 +358,17 @@ main {
   align-items: flex-start;
 }
 
+.tip-box a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(245,197,66,0.35);
+  transition: border-color 0.2s, color 0.2s;
+}
+.tip-box a:hover {
+  color: #ffe077;
+  border-color: #ffe077;
+}
+
 .tip-label {
   font-family: 'Press Start 2P', monospace;
   font-size: 0.42rem;
@@ -488,6 +499,16 @@ footer {
   gap: 18px;
   opacity: 0;
   animation: fadeUp 0.45s cubic-bezier(0.16,1,0.3,1) 0.48s both;
+}
+.done-card a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(245,197,66,0.35);
+  transition: border-color 0.2s, color 0.2s;
+}
+.done-card a:hover {
+  color: #ffe077;
+  border-color: #ffe077;
 }
 
 .done-text { display: flex; flex-direction: column; gap: 5px; }

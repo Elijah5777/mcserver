@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flint Haven &#8212; How to Claim Plot</title>
+  <link rel="icon" href="../../../assets/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/styles.css">
+  <script src="../../../assets/config.js"></script>
+  <script src="../../../assets/modal.js"></script>
+  <style>
+    .step-video-wrap {
+      border: 3px solid var(--inv-dark);
+      box-shadow: inset 1px 1px 0 #555, inset -1px -1px 0 #111, 3px 3px 0 rgba(0,0,0,0.5);
+      overflow: hidden;
+      background: #111;
+    }
+    .step-video-wrap video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .video-controls {
+      display: flex;
+      gap: 6px;
+      padding: 8px;
+      background: #1a1a1a;
+      border-top: 2px solid var(--inv-dark);
+    }
+    .vid-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.45rem;
+      letter-spacing: 0.06em;
+      padding: 7px 12px;
+      border: 2px solid #1a1a1a;
+      cursor: pointer;
+      transition: background 0.12s, transform 0.1s;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.2), inset -1px -1px 0 rgba(0,0,0,0.3), 2px 2px 0 rgba(0,0,0,0.5);
+    }
+    .vid-btn:active {
+      transform: translateY(1px);
+      box-shadow: inset 1px 1px 0 rgba(0,0,0,0.3), 1px 1px 0 rgba(0,0,0,0.4);
+    }
+    .vid-btn.play { background: var(--emerald); color: #1a1a1a; }
+    .vid-btn.play:hover { background: #22f070; }
+    .vid-btn.stop { background: var(--accent-admin); color: white; }
+    .vid-btn.stop:hover { background: #e85555; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="back-btn" href="../../../index.html">&#9664; BACK TO COMMANDS</a>
+    <div class="site-title"></div>
+    <div class="tagline">// Flan //</div>
+  </div>
+</header>
+
+<main>
+
+<div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">01</div>
+      <div class="step-title-area">
+        <span class="step-title">HOW TO CLAIM USING A GOLDEN HOE</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        First, grab a <strong>Golden Hoe</strong> to claim your land.
+        If you don't have gold, see Step 2 for an alternative method.
+        The video below shows how to use a Golden Hoe to claim a plot.
+      </p>
+      <div class="step-video-wrap">
+        <video src="assets/golden_hoe.mp4" loop muted playsinline></video>
+        <div class="video-controls">
+          <button class="vid-btn play" onclick="vidPlay(this)">&#9654; PLAY</button>
+          <button class="vid-btn stop" onclick="vidStop(this)">&#9632; STOP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">02</div>
+      <div class="step-title-area">
+        <span class="step-title">HOW TO CLAIM USING COMMANDS</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        Run <code>/flan add [corner cords]</code> and replace <strong>[corner cords]</strong>
+        with the coordinates of one corner of your plot. For example:
+        <code>/flan add 0 10 0 20 10 0</code>. Make sure to replace those with your actual coordinates.
+        You can use <code>F3</code> in-game to find your current coordinates.
+      </p>
+      <div class="step-video-wrap">
+        <video src="assets/command.mp4" loop muted playsinline></video>
+        <div class="video-controls">
+          <button class="vid-btn play" onclick="vidPlay(this)">&#9654; PLAY</button>
+          <button class="vid-btn stop" onclick="vidStop(this)">&#9632; STOP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="done-card">
+    <div class="done-text">
+      <div class="done-title">ALL DONE!</div>
+      <div class="done-sub">Click this link to see how you can add users to your plot! <a href="../flan_adding_users_to_plot/flan_adding_users_to_plot.html">View the guide &#8594;</a></div>
+    </div>
+  </div>
+
+</main>
+
+<footer>&copy; 2026 FLINT HAVEN &#8212; ALL RIGHTS RESERVED</footer>
+
+<div id="block-bar"></div>
+<script src="../../../assets/blockbar.js" data-root="../../../"></script>
+<script>
+  function vidPlay(btn) {
+    var video = btn.closest('.step-video-wrap').querySelector('video');
+    video.play();
+  }
+  function vidStop(btn) {
+    var video = btn.closest('.step-video-wrap').querySelector('video');
+    video.pause();
+    video.currentTime = 0;
+  }
+</script>
+
+</body>
+</html>
