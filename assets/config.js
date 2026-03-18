@@ -11,9 +11,9 @@ var CC_CONFIG = {
 
   /* [3] */
   form: {
-    url: 'https://your-form-url-here.com',
-    buttonLabel: 'APPLY NOW',
-    modalTitle: 'JOIN FLINT HAVEN'
+    url: 'https://forms.office.com/r/ATVSTuccaW',
+    buttonLabel: 'Have any commands we should add?',
+    modalTitle: 'Submit them here!'
   }
 
 };
