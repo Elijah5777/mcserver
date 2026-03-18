@@ -1,25 +1,14 @@
-/* CrossCraft - blockbar.js
-   Include on any page with:
-   <script src="[path]/assets/blockbar.js" data-root="[path to root]"></script>
-
-   data-root = relative path from current page back to site root.
-   Examples:
-     index.html          -> data-root=""
-     docs/flan/x/x.html -> data-root="../../../"
-*/
-
+/* [10] */
 (function() {
   var script = document.currentScript;
   var root = script ? (script.getAttribute('data-root') || '') : '';
   var ASSET_PATH = root + 'assets/blocks/';
   var BLOCK_PX = 32;
 
-  /* Top layers - edit here to change for all pages */
+  /* [11] */
   var BLOCK_LAYERS = ['grass', 'dirt', 'stone'];
 
-  /* Ore config - edit here to change for all pages.
-     chance: probability per slot (0.0 - 1.0)
-     veinSize: max blocks per vein */
+  /* [12] */
   var ORES = [
     { name: 'coal_ore',    chance: 0.06, veinSize: 3 },
     { name: 'iron_ore',    chance: 0.04, veinSize: 2 },
@@ -27,6 +16,7 @@
     { name: 'diamond_ore', chance: 0.01, veinSize: 1 }
   ];
 
+  /* [13] */
   function buildBar() {
     var bar = document.getElementById('block-bar');
     if (!bar) return;
@@ -45,15 +35,16 @@
         row.appendChild(canvas);
         bar.appendChild(row);
 
+        /* [14] */
         var stoneImg = new Image();
         stoneImg.onload = function() {
           var ctx = canvas.getContext('2d');
           ctx.imageSmoothingEnabled = false;
-
           for (var x = 0; x < slots; x++) {
             ctx.drawImage(stoneImg, x * BLOCK_PX, 0, BLOCK_PX, BLOCK_PX);
           }
 
+          /* [15] */
           var oreSlots = [];
           ORES.forEach(function(ore) {
             var x = 0;
@@ -68,6 +59,7 @@
             }
           });
 
+          /* [16] */
           var imgCache = {};
           oreSlots.forEach(function(slot) {
             function draw(img) { ctx.drawImage(img, slot.x * BLOCK_PX, 0, BLOCK_PX, BLOCK_PX); }
@@ -92,6 +84,7 @@
     });
   }
 
+  /* [17] */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', buildBar);
   } else {

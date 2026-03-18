@@ -1,5 +1,4 @@
-/* CrossCraft - styles.css */
-
+/* [18] */
 :root {
   --inv-bg:       #c6c6c6;
   --inv-dark:     #555555;
@@ -14,21 +13,23 @@
   --emerald-dark: #0fa347;
   --gold:         #f5c542;
 
-  /* Section accent colors - add new ones here as needed */
+  
   --accent-claim:    #f5c542;
   --accent-teleport: #17dd62;
   --accent-general:  #6ab0f5;
   --accent-admin:    #e05252;
 }
 
+/* [19] */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* [20] */
 body {
-  /* Background: swap bg.gif with your own gif anytime */
+  
   background: url('bg.gif') center center / cover fixed no-repeat;
   background-color: #1a3a5c;
   font-family: 'VT323', monospace;
@@ -37,10 +38,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ------------------------------------------------
-   BLOCK BAR
-   Configured in each page's <script> BLOCK_LAYERS
-   ------------------------------------------------ */
+/* [21] */
 #block-bar {
   position: fixed;
   bottom: 0;
@@ -59,9 +57,7 @@ body {
   image-rendering: pixelated;
 }
 
-/* ------------------------------------------------
-   HEADER
-   ------------------------------------------------ */
+/* [22] */
 header {
   position: relative;
   z-index: 2;
@@ -70,6 +66,7 @@ header {
   animation: slideDown 0.55s cubic-bezier(0.16,1,0.3,1) both;
 }
 
+/* [23] */
 .site-title {
   display: inline-block;
   font-family: 'Press Start 2P', monospace;
@@ -83,19 +80,21 @@ header {
 
 .site-title span { color: var(--grass-lit); }
 
+/* [24] */
 .tagline {
   font-size: 1.4rem;
   color: var(--text-muted);
   letter-spacing: 0.14em;
 }
 
-/* Docs pages */
+/* [26] */
 .header-inner {
   max-width: 720px;
   margin: 0 auto;
   text-align: left;
 }
 
+/* [25] */
 .back-btn {
   display: inline-flex;
   align-items: center;
@@ -119,9 +118,7 @@ header {
   background: rgba(0,0,0,0.5);
 }
 
-/* ------------------------------------------------
-   MAIN CONTENT WRAPPER
-   ------------------------------------------------ */
+/* [27] */
 main {
   position: relative;
   z-index: 2;
@@ -132,11 +129,7 @@ main {
   flex-direction: column;
 }
 
-/* ------------------------------------------------
-   SECTIONS
-   data-accent values: claim | teleport | general | admin
-   Add a new accent: add var + selector in :root above
-   ------------------------------------------------ */
+/* [28] */
 .cmd-section {
   display: flex;
   flex-direction: column;
@@ -148,6 +141,7 @@ main {
 .cmd-section[data-accent="general"]  { --section-accent: var(--accent-general);  }
 .cmd-section[data-accent="admin"]    { --section-accent: var(--accent-admin);    }
 
+/* [29] */
 .section-header {
   display: flex;
   align-items: center;
@@ -161,6 +155,7 @@ main {
   padding-right: 12px;
 }
 
+/* [30] */
 .section-icon {
   font-family: 'Press Start 2P', monospace;
   font-size: 0.55rem;
@@ -176,6 +171,7 @@ main {
   color: var(--section-accent, var(--emerald));
 }
 
+/* [31] */
 .section-label {
   font-family: 'Press Start 2P', monospace;
   font-size: 0.5rem;
@@ -198,9 +194,7 @@ main {
 .cmd-section:nth-child(3) .section-header { animation-delay: 0.26s; }
 .cmd-section:nth-child(4) .section-header { animation-delay: 0.34s; }
 
-/* ------------------------------------------------
-   COMMAND CARDS
-   ------------------------------------------------ */
+/* [32] */
 .cmd-card {
   background: var(--inv-bg);
   border: 3px solid var(--inv-dark);
@@ -222,6 +216,7 @@ main {
 .cmd-section:nth-child(3) .cmd-card:nth-child(2) { animation-delay: 0.37s; }
 .cmd-section:nth-child(4) .cmd-card:nth-child(1) { animation-delay: 0.38s; }
 
+/* [33] */
 .cmd-card-header {
   display: flex;
   align-items: center;
@@ -241,6 +236,7 @@ main {
   flex-shrink: 0;
 }
 
+/* [34] */
 .cmd-name {
   flex: 1;
   padding: 15px 16px;
@@ -251,6 +247,7 @@ main {
   line-height: 1.5;
 }
 
+/* [35] */
 .expand-arrow {
   width: 44px;
   min-height: 48px;
@@ -269,6 +266,7 @@ main {
   color: var(--section-accent, var(--emerald));
 }
 
+/* [36] */
 .cmd-card-body {
   max-height: 0;
   overflow: hidden;
@@ -282,6 +280,7 @@ main {
   border-top: 3px solid var(--inv-dark);
 }
 
+/* [37] */
 .cmd-card-body-inner {
   background: var(--panel-dark);
   padding: 12px 14px;
@@ -290,9 +289,7 @@ main {
   gap: 7px;
 }
 
-/* ------------------------------------------------
-   SUB-COMMAND ROWS
-   ------------------------------------------------ */
+/* [38] */
 .sub-row {
   display: flex;
   align-items: flex-start;
@@ -322,6 +319,7 @@ main {
   padding: 10px 12px;
 }
 
+/* [39] */
 .sub-cmd {
   font-family: 'Press Start 2P', monospace;
   font-size: 0.48rem;
@@ -330,6 +328,7 @@ main {
   line-height: 1.7;
 }
 
+/* [40] */
 .sub-desc {
   font-size: 1.05rem;
   color: var(--text-dim);
@@ -348,9 +347,7 @@ main {
   border-color: #ffe077;
 }
 
-/* ------------------------------------------------
-   TIP BOX
-   ------------------------------------------------ */
+/* [41] */
 .tip-box {
   background: linear-gradient(135deg, #1a3a1a, #0f2a0f);
   border: 2px solid var(--emerald-dark);
@@ -376,9 +373,7 @@ main {
   line-height: 1.35;
 }
 
-/* ------------------------------------------------
-   FOOTER
-   ------------------------------------------------ */
+/* [42] */
 footer {
   position: relative;
   z-index: 2;
@@ -390,9 +385,7 @@ footer {
   letter-spacing: 0.16em;
 }
 
-/* ------------------------------------------------
-   DOCS PAGE - STEP CARDS
-   ------------------------------------------------ */
+/* [43] */
 .step-card {
   background: var(--inv-bg);
   border: 3px solid var(--inv-dark);
@@ -484,6 +477,7 @@ footer {
 
 .step-img-wrap:hover img { transform: scale(1.015); }
 
+/* [44] */
 .done-card {
   background: linear-gradient(135deg, #162e12, #0d1f0b);
   border: 3px solid var(--emerald-dark);
@@ -511,20 +505,122 @@ footer {
   line-height: 1.35;
 }
 
-/* ------------------------------------------------
-   ANIMATIONS
-   ------------------------------------------------ */
+/* [47] */
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* [48] */
 @keyframes fadeUp {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* [49] */
 @media (max-width: 500px) {
   .cmd-name    { font-size: 0.5rem; }
   .site-title  { font-size: clamp(0.8rem, 6vw, 1.2rem); }
   .section-label { font-size: 0.42rem; }
+}
+
+/* [45] */
+#form-float-btn {
+  position: fixed;
+  bottom: 130px;
+  right: 18px;
+  z-index: 50;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: #1a1a1a;
+  background: var(--emerald);
+  border: 3px solid #1a1a1a;
+  box-shadow: inset 2px 2px 0 rgba(255,255,255,0.4), inset -2px -2px 0 rgba(0,0,0,0.3), 3px 3px 0 rgba(0,0,0,0.6);
+  padding: 10px 14px;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  transition: background 0.15s, transform 0.1s;
+  animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.6s both;
+}
+
+#form-float-btn:hover {
+  background: #22f070;
+  transform: translateY(-2px);
+}
+
+#form-float-btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,0.3), inset -2px -2px 0 rgba(255,255,255,0.2), 1px 1px 0 rgba(0,0,0,0.6);
+}
+
+/* [46] */
+#form-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#form-modal-overlay.open {
+  display: flex;
+}
+
+#form-modal {
+  background: var(--inv-bg);
+  border: 3px solid var(--inv-dark);
+  box-shadow: inset 2px 2px 0 white, inset -2px -2px 0 var(--stone-dark), 6px 6px 0 rgba(0,0,0,0.6);
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeUp 0.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+#form-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #3c3c3c;
+  border-bottom: 3px solid var(--inv-dark);
+  padding: 10px 14px;
+}
+
+#form-modal-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: var(--emerald);
+  letter-spacing: 0.08em;
+}
+
+#form-modal-close {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: white;
+  background: var(--accent-admin);
+  border: 2px solid #1a1a1a;
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.2), inset -1px -1px 0 rgba(0,0,0,0.3), 2px 2px 0 rgba(0,0,0,0.5);
+  padding: 5px 9px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#form-modal-close:hover { background: #e85555; }
+
+#form-modal-body {
+  flex: 1;
+  overflow: hidden;
+  background: #2e2e2e;
+  padding: 3px;
+}
+
+#form-modal-body iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  display: block;
+  border: none;
 }
