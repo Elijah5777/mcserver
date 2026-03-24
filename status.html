@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flint Haven &#8212; Server Status</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/modal.js"></script>
+
+  <style>
+    .status-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 4px 16px 120px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .status-card {
+      background: var(--inv-bg);
+      border: 3px solid var(--inv-dark);
+      box-shadow: inset 2px 2px 0 white, inset -2px -2px 0 var(--stone-dark), 3px 3px 0 rgba(0,0,0,0.45);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.45s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    .status-card:nth-child(1) { animation-delay: 0.10s; }
+    .status-card:nth-child(2) { animation-delay: 0.18s; }
+    .status-card:nth-child(3) { animation-delay: 0.26s; }
+
+    .status-card-header {
+      background: #3c3c3c;
+      border-bottom: 3px solid var(--inv-dark);
+      padding: 10px 16px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      color: white;
+      letter-spacing: 0.08em;
+    }
+
+    .status-card-body {
+      background: var(--panel-dark);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--panel-darker);
+      border: 2px solid #1a1a1a;
+      box-shadow: inset 1px 1px 0 #3a3a3a, inset -1px -1px 0 #111;
+      padding: 10px 14px;
+    }
+
+    .status-key {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.45rem;
+      color: #888;
+      letter-spacing: 0.06em;
+    }
+
+    .status-val {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      text-align: right;
+    }
+
+    .badge {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.42rem;
+      padding: 4px 10px;
+      border: 2px solid #1a1a1a;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.15), 2px 2px 0 rgba(0,0,0,0.4);
+      letter-spacing: 0.06em;
+    }
+
+    .badge-online { background: var(--emerald); color: #1a1a1a; }
+    .badge-offline { background: var(--accent-admin); color: white; }
+    .badge-maintenance { background: var(--gold); color: #1a1a1a; }
+    .badge-unknown { background: #555; color: #ccc; }
+
+    .last-updated {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.38rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 8px 0 0;
+      letter-spacing: 0.1em;
+    }
+
+    .refresh-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.42rem;
+      color: #1a1a1a;
+      background: var(--accent-general);
+      border: 2px solid #1a1a1a;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.2), inset -1px -1px 0 rgba(0,0,0,0.3), 2px 2px 0 rgba(0,0,0,0.5);
+      padding: 8px 14px;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .schedule-entry {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: var(--panel-darker);
+      border: 2px solid #1a1a1a;
+      box-shadow: inset 1px 1px 0 #3a3a3a, inset -1px -1px 0 #111;
+      padding: 10px 14px;
+      border-left: 4px solid var(--gold);
+    }
+
+    .schedule-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.44rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+
+    .schedule-time {
+      font-size: 1rem;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="site-title"></div>
+  <div class="tagline">// SERVER STATUS //</div>
+</header>
+
+<div class="status-grid">
+
+<button class="refresh-btn" onclick="renderStatus()">↻ REFRESH STATUS</button>
+
+  <div class="status-card">
+    <div class="status-card-header">LIVE STATUS</div>
+    <div class="status-card-body">
+      <div class="status-row"><span class="status-key">SERVER</span><span class="status-val" id="val-server">--</span></div>
+      <div class="status-row"><span class="status-key">STATE</span><span class="status-val" id="val-state">--</span></div>
+      <div class="status-row"><span class="status-key">JAR</span><span class="status-val" id="val-jar">--</span></div>
+      <div class="status-row"><span class="status-key">JAR RUNNING</span><span class="status-val" id="val-jar-up">--</span></div>
+      <div class="status-row"><span class="status-key">MAINTENANCE</span><span class="status-val" id="val-maintenance">--</span></div>
+      <div class="status-row"><span class="status-key">LAST PING</span><span class="status-val" id="val-timestamp">--</span></div>
+      <div class="last-updated" id="last-updated">NEVER REFRESHED</div>
+    </div>
+  </div>
+
+  <div class="status-card">
+    <div class="status-card-header">MAINTENANCE SCHEDULE</div>
+    <div class="status-card-body" id="schedule-body"></div>
+  </div>
+
+</div>
+
+<footer>&copy; 2026 FLINT HAVEN &#8212; ALL RIGHTS RESERVED</footer>
+
+<script src="assets/blockbar.js"></script>
+
+<script>
+const STATUS_DATA = {
+  server: "Flint Haven",
+  state: "online",
+  jar: "paper-1.20.1.jar",
+  jar_up: true,
+  maintenance: false,
+  timestamp: new Date().toISOString()
+};
+
+const SCHEDULE_DATA = [
+  { date: "APR 2", start: "02:00", end: "04:00" },
+  { date: "APR 10", start: "01:00", end: "03:30" }
+];
+
+function stateBadge(data) {
+  if (data.maintenance) return '<span class="badge badge-maintenance">MAINTENANCE</span>';
+  if (data.state === 'online' && data.jar_up) return '<span class="badge badge-online">ONLINE</span>';
+  if (data.state === 'offline') return '<span class="badge badge-offline">OFFLINE</span>';
+  return '<span class="badge badge-unknown">' + (data.state || 'UNKNOWN').toUpperCase() + '</span>';
+}
+
+function fmt(ts) {
+  try { return new Date(ts).toLocaleString(); }
+  catch(e) { return ts; }
+}
+
+function yesNo(val) {
+  return val
+    ? '<span style="color:var(--emerald)">YES</span>'
+    : '<span style="color:var(--accent-admin)">NO</span>';
+}
+
+function renderSchedule(scheduled) {
+  var body = document.getElementById('schedule-body');
+  if (!scheduled || scheduled.length === 0) {
+    body.innerHTML = '<div class="schedule-entry"><span class="schedule-title">NO UPCOMING MAINTENANCE</span></div>';
+    return;
+  }
+  body.innerHTML = scheduled.map(function(s) {
+    return '<div class="schedule-entry">' +
+           '<span class="schedule-title">SCHEDULED MAINTENANCE</span>' +
+           '<span class="schedule-time">' + s.date + ' &nbsp; ' + s.start + ' — ' + s.end + ' UTC</span>' +
+           '</div>';
+  }).join('');
+}
+
+function renderStatus() {
+  const data = STATUS_DATA;
+  document.getElementById('val-server').textContent = data.server;
+  document.getElementById('val-state').innerHTML = stateBadge(data);
+  document.getElementById('val-jar').textContent = data.jar;
+  document.getElementById('val-jar-up').innerHTML = yesNo(data.jar_up);
+  document.getElementById('val-maintenance').innerHTML = yesNo(data.maintenance);
+  document.getElementById('val-timestamp').textContent = fmt(data.timestamp);
+  document.getElementById('last-updated').textContent = 'LAST UPDATED: ' + new Date().toLocaleTimeString();
+  renderSchedule(SCHEDULE_DATA);
+}
+
+renderStatus();
+</script>
+
+</body>
+</html>
