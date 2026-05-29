@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flint Haven &#8212; Economy Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1e1e1e;
+      --panel: #2d2d2d;
+      --inv-dark: #373737;
+      --text: #e0e0e0;
+      --muted: #9a9a9a;
+      --emerald: #3ecf8e;
+      --gold: #ffaa00;
+      --accent-admin: #c0392b;
+      --link: #5dade2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'VT323', monospace;
+      font-size: 1.35rem;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+      border-bottom: 4px solid var(--inv-dark);
+      padding: 20px 24px;
+    }
+    .header-inner { max-width: 900px; margin: 0 auto; }
+    .back-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      color: var(--link);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .back-btn:hover { color: var(--emerald); }
+    .site-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+    .tagline { font-size: 1.1rem; color: var(--muted); margin-top: 6px; }
+    main { max-width: 900px; margin: 0 auto; padding: 28px 20px 60px; }
+    .step-card {
+      background: var(--panel);
+      border: 3px solid var(--inv-dark);
+      margin-bottom: 24px;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.45);
+    }
+    .step-header {
+      display: flex;
+      align-items: stretch;
+      background: #252525;
+      border-bottom: 3px solid var(--inv-dark);
+    }
+    .step-num-block {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      background: var(--emerald);
+      color: #1a1a1a;
+      padding: 16px 14px;
+      display: flex;
+      align-items: center;
+      min-width: 56px;
+      justify-content: center;
+    }
+    .step-title-area { padding: 14px 18px; flex: 1; display: flex; align-items: center; }
+    .step-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      color: var(--gold);
+    }
+    .step-body { padding: 20px 22px 24px; }
+    .step-desc { margin-bottom: 14px; }
+    .step-desc strong { color: var(--emerald); }
+    .cmd {
+      display: inline-block;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.45rem;
+      background: #111;
+      border: 2px solid var(--inv-dark);
+      padding: 6px 10px;
+      margin: 4px 6px 4px 0;
+      color: var(--emerald);
+      box-shadow: inset 1px 1px 0 #333;
+    }
+    ul.steps { list-style: none; margin: 12px 0; }
+    ul.steps li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      border-bottom: 1px dashed #444;
+    }
+    ul.steps li:last-child { border-bottom: none; }
+    ul.steps li::before {
+      content: '>';
+      position: absolute;
+      left: 4px;
+      color: var(--emerald);
+      font-weight: bold;
+    }
+    .admin-badge {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.4rem;
+      background: var(--accent-admin);
+      color: white;
+      padding: 4px 8px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    table.cmd-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 1.2rem;
+    }
+    .cmd-table th, .cmd-table td {
+      border: 2px solid var(--inv-dark);
+      padding: 10px 12px;
+      text-align: left;
+    }
+    .cmd-table th {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.45rem;
+      background: #252525;
+      color: var(--gold);
+    }
+    .cmd-table td code {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.42rem;
+      color: var(--emerald);
+    }
+    .done-card {
+      background: linear-gradient(135deg, #1a3d2e 0%, #252525 100%);
+      border: 3px solid var(--emerald);
+      padding: 24px;
+      text-align: center;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.45);
+    }
+    .done-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.65rem;
+      color: var(--emerald);
+      margin-bottom: 10px;
+    }
+    .done-sub { color: var(--muted); font-size: 1.15rem; }
+    .done-sub a { color: var(--link); }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      border-top: 2px solid var(--inv-dark);
+    }
+    .tip-box {
+      background: #1a2a1a;
+      border: 2px solid var(--emerald);
+      padding: 14px 16px;
+      margin-top: 12px;
+      font-size: 1.15rem;
+    }
+    .warn-box {
+      background: #2a1a1a;
+      border: 2px solid var(--accent-admin);
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="back-btn" href="index.html">&#9664; BACK TO COMMANDS</a>
+    <div class="site-title">FLINT HAVEN ECONOMY</div>
+    <div class="tagline">// Server-only mod — no client install needed //</div>
+  </div>
+</header>
+
+<main>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">00</div>
+      <div class="step-title-area">
+        <span class="step-title">OPEN THE MAIN MENU</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        Everything starts here. You do <strong>not</strong> need the mod on your computer — only the server has it.
+      </p>
+      <span class="cmd">/ah</span>
+      <span class="cmd">/economy</span>
+      <span class="cmd">/menu</span>
+      <p class="step-desc" style="margin-top:14px;">
+        A chest menu opens with numbered options. Click an icon to go to that feature.
+      </p>
+      <div class="tip-box">
+        In-game help: <span class="cmd">/economy help</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">01</div>
+      <div class="step-title-area">
+        <span class="step-title">SELL AN ITEM ON THE AUCTION HOUSE</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <ul class="steps">
+        <li>Open the main menu (<span class="cmd">/ah</span>)</li>
+        <li>Click <strong>2. Sell on Auction</strong></li>
+        <li>Hold the item in your <strong>main hand</strong> (hotbar selected)</li>
+        <li>Click a gold nugget price ($100, $1K, $10K, etc.)</li>
+        <li>Click <strong>Confirm Listing</strong> (green block)</li>
+      </ul>
+      <p class="step-desc">Or set a custom price first:</p>
+      <span class="cmd">/auction sell 50000</span>
+      <p class="step-desc" style="margin-top:8px;">Then confirm in the sell menu.</p>
+      <div class="warn-box">
+        <strong>Cannot list:</strong> spawners. Max one stack (64) per listing.
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">02</div>
+      <div class="step-title-area">
+        <span class="step-title">REMOVE / CANCEL YOUR LISTING</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <ul class="steps">
+        <li>Main menu → <strong>3. My Listings</strong></li>
+        <li>Click the item you want to remove</li>
+        <li>Item is returned to your inventory</li>
+      </ul>
+      <p class="step-desc">Or use chat:</p>
+      <span class="cmd">/auction cancel &lt;listing-id&gt;</span>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">03</div>
+      <div class="step-title-area">
+        <span class="step-title">BUY FROM THE AUCTION HOUSE</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <ul class="steps">
+        <li>Main menu → <strong>1. Auction House</strong></li>
+        <li>Click any item in the top row to buy instantly</li>
+        <li>Use bottom buttons: pages, sort, claims, main menu</li>
+      </ul>
+      <p class="step-desc">If your inventory is full, money still charges — claim later:</p>
+      <span class="cmd">/auction claim</span>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">04</div>
+      <div class="step-title-area">
+        <span class="step-title">MONEY, PAY & LEADERBOARD</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <table class="cmd-table">
+        <tr><th>Command</th><th>What it does</th></tr>
+        <tr><td><code>/balance</code></td><td>Your balance</td></tr>
+        <tr><td><code>/balance Steve</code></td><td>Another player's balance</td></tr>
+        <tr><td><code>/pay Steve 5000</code></td><td>Send money (instant, no confirm!)</td></tr>
+        <tr><td><code>/baltop</code></td><td>Top 10 richest players</td></tr>
+      </table>
+      <div class="warn-box" style="margin-top:14px;">
+        <strong>/pay is instant</strong> — double-check the name and amount before pressing Enter.
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">05</div>
+      <div class="step-title-area">
+        <span class="step-title">SERVER SHOP & ORDERS</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc"><strong>Server Shop</strong> — fixed prices, infinite stock:</p>
+      <ul class="steps">
+        <li>Main menu → <strong>5. Server Shop</strong></li>
+        <li>Click item = buy 1 | Shift-click = buy a stack</li>
+        <li>Full inventory? <span class="cmd">/shop claim</span></li>
+      </ul>
+      <p class="step-desc" style="margin-top:16px;"><strong>Orders</strong> — bulk trades:</p>
+      <span class="cmd">/orders create diamond 64 1000</span>
+      <p class="step-desc">Hold matching items → <span class="cmd">/orders</span> → click an order to deliver.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">06</div>
+      <div class="step-title-area">
+        <span class="step-title">SELL TO SERVER (LOW PAYOUT)</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <ul class="steps">
+        <li>Main menu → <strong>7. Sell to Server</strong></li>
+        <li>Hold item → click Confirm Sell</li>
+      </ul>
+      <p class="step-desc">Much lower than auction prices — use for junk items only.</p>
+      <span class="cmd">/sell</span>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">07</div>
+      <div class="step-title-area">
+        <span class="step-title">ADMIN COMMANDS <span class="admin-badge">OP ONLY</span></span>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        These require <strong>operator (OP)</strong> on the server. If you are on the server OP list, you can use them in-game or from console.
+      </p>
+      <table class="cmd-table">
+        <tr><th>Command</th><th>What it does</th></tr>
+        <tr><td><code>/setmoney &lt;player&gt; &lt;amount&gt;</code></td><td>Set exact balance</td></tr>
+        <tr><td><code>/addmoney &lt;player&gt; &lt;amount&gt;</code></td><td>Add money</td></tr>
+        <tr><td><code>/removemoney &lt;player&gt; &lt;amount&gt;</code></td><td>Remove money</td></tr>
+        <tr><td><code>/checkbalance &lt;player&gt;</code></td><td>View balance (logged)</td></tr>
+        <tr><td><code>/ah admin remove-listing &lt;id&gt;</code></td><td>Remove one listing</td></tr>
+        <tr><td><code>/ah admin clear-player &lt;player&gt;</code></td><td>Clear all their listings</td></tr>
+        <tr><td><code>/shop reload</code></td><td>Reload shop config.yml</td></tr>
+      </table>
+      <p class="step-desc" style="margin-top:14px;">
+        Shop config file: <code>config/flinthaven-economy/config.yml</code> on the server.
+      </p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num-block">++</div>
+      <div class="step-title-area">
+        <span class="step-title">ALL PLAYER COMMANDS (QUICK REFERENCE)</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <table class="cmd-table">
+        <tr><th>Command</th><th>Description</th></tr>
+        <tr><td><code>/ah</code> <code>/economy</code> <code>/menu</code></td><td>Main economy menu</td></tr>
+        <tr><td><code>/economy help</code></td><td>Short in-game tips</td></tr>
+        <tr><td><code>/balance</code> <code>/money</code></td><td>Check balance</td></tr>
+        <tr><td><code>/pay &lt;player&gt; &lt;amount&gt;</code></td><td>Send money</td></tr>
+        <tr><td><code>/baltop</code> <code>/richest</code> <code>/top money</code></td><td>Leaderboard</td></tr>
+        <tr><td><code>/auction sell &lt;price&gt;</code></td><td>Set price & open sell menu</td></tr>
+        <tr><td><code>/auction claim</code></td><td>Claim auction items</td></tr>
+        <tr><td><code>/auction list</code></td><td>List all auctions in chat</td></tr>
+        <tr><td><code>/auction search &lt;name&gt;</code></td><td>Search then open AH</td></tr>
+        <tr><td><code>/shop</code></td><td>Server shop menu</td></tr>
+        <tr><td><code>/shop claim</code></td><td>Claim shop purchases</td></tr>
+        <tr><td><code>/orders</code></td><td>Orders menu</td></tr>
+        <tr><td><code>/orders create &lt;item&gt; &lt;qty&gt; &lt;priceEach&gt;</code></td><td>Create order</td></tr>
+        <tr><td><code>/sell</code></td><td>Sell to server menu</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="done-card">
+    <div class="done-title">YOU'RE READY TO TRADE!</div>
+    <div class="done-sub">
+      Open <strong>/ah</strong> on the server and start with <strong>Sell on Auction</strong> or <strong>Auction House</strong>.
+      <br><br>
+      Questions? Ask server staff.
+    </div>
+  </div>
+
+</main>
+
+<footer>&copy; 2026 FLINT HAVEN &#8212; ALL RIGHTS RESERVED</footer>
+
+</body>
+</html>
